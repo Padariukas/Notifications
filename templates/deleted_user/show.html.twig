@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DeletedUser{% endblock %}
+
+{% block body %}
+    <h1>DeletedUser</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ deleted_user.id }}</td>
+            </tr>
+            <tr>
+                <th>UserName</th>
+                <td>{{ deleted_user.UserName }}</td>
+            </tr>
+            <tr>
+                <th>DisableDate</th>
+                <td>{{ deleted_user.DisableDate ? deleted_user.DisableDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DeleteDate</th>
+                <td>{{ deleted_user.DeleteDate ? deleted_user.DeleteDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>IsDeleted</th>
+                <td>{{ deleted_user.IsDeleted ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>ArchiveDate</th>
+                <td>{{ deleted_user.ArchiveDate ? deleted_user.ArchiveDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>IsArchived</th>
+                <td>{{ deleted_user.IsArchived ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsArchiveDeleted</th>
+                <td>{{ deleted_user.IsArchiveDeleted ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('deleted_user_index') }}">back to list</a>
+
+    <a href="{{ path('deleted_user_edit', {'id': deleted_user.id}) }}">edit</a>
+
+    {{ include('deleted_user/_delete_form.html.twig') }}
+{% endblock %}

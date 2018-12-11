@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ include('deleted_user/_form.html.twig', {'button_label': 'Update'}) }}
+    <a href="{{ path('deleted_user_index') }}">back to list</a>
+    {{ include('deleted_user/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DeletedUser index{% endblock %}
+
+{% block body %}
+
+    <div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UserName</th>
+                <th>DisableDate</th>
+                <th>DeleteDate</th>
+                <th>ArchiveDate</th>
+                <th>IsDeleted</th>
+                <th>IsArchived</th>
+                <th>IsArchiveDeleted</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for deleted_user in deleted_users %}
+            <tr>
+                <td>{{ deleted_user.id }}</td>
+                <td>{{ deleted_user.UserName }}</td>
+                <td>{{ deleted_user.DisableDate ? deleted_user.DisableDate|date('Y-m-d') : '' }}</td>
+                <td>{{ deleted_user.DeleteDate ? deleted_user.DeleteDate|date('Y-m-d') : '' }}</td>
+                <td>{{ deleted_user.ArchiveDate ? deleted_user.ArchiveDate|date('Y-m-d') : '' }}</td>
+                <td>{{ deleted_user.IsDeleted ? 'Yes' : 'No' }}</td>
+                <td>{{ deleted_user.IsArchived ? 'Yes' : 'No' }}</td>
+                <td>{{ deleted_user.IsArchiveDeleted ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('deleted_user_show', {'id': deleted_user.id}) }}">show</a>
+                    <a href="{{ path('deleted_user_edit', {'id': deleted_user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('deleted_user_new') }}">Create new</a>
+</div>
+{% endblock %}

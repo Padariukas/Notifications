@@ -1,0 +1,10 @@
+swiftmailer:
+    #url: '%env(MAILER_URL)%'
+    host: 192.168.192.11
+    disable_delivery: false
+    transport: smtp
+    username: noreply
+    password: N0r3ply
+    auth_mode: null
+    port: 2525
+    spool: { type: 'memory' }
