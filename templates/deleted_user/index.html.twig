@@ -3,6 +3,7 @@
 {% block title %}DeletedUser index{% endblock %}
 
 {% block body %}
+    <a href="{{ path('deleted_user_new') }}">Create new</a>
 
     <div class="table-responsive">
     <table class="table table-striped table-sm">
@@ -43,6 +44,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('deleted_user_new') }}">Create new</a>
 </div>
 {% endblock %}
