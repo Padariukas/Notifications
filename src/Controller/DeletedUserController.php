@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/")
  */
 
+
 class DeletedUserController extends AbstractController
 {
     /**
