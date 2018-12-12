@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/deleted/user")
+ * @Route("/")
  */
 class DeletedUserController extends AbstractController
 {
@@ -47,7 +47,7 @@ class DeletedUserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="deleted_user_show", methods="GET")
+     * @Route("/{id}/show", name="deleted_user_show", methods="GET")
      */
     public function show(DeletedUser $deletedUser): Response
     {
