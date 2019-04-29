@@ -122,6 +122,9 @@
             "ref": "b5026d7ffdb43b4d66f4cc091b1e6f94e6023986"
         }
     },
+    "symfony/contracts": {
+        "version": "v1.0.2"
+    },
     "symfony/debug": {
         "version": "v4.1.7"
     },
@@ -176,6 +179,9 @@
     "symfony/intl": {
         "version": "v4.1.7"
     },
+    "symfony/ldap": {
+        "version": "v4.1.12"
+    },
     "symfony/maker-bundle": {
         "version": "1.0",
         "recipe": {
@@ -193,6 +199,9 @@
     },
     "symfony/polyfill-intl-icu": {
         "version": "v1.10.0"
+    },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.11.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.10.0"
@@ -218,8 +227,17 @@
             "ref": "5f514d9d3b8a8aac3d62ae6a86b18b90ed0c7826"
         }
     },
-    "symfony/security-core": {
-        "version": "v4.1.7"
+    "symfony/security-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "f8a63faa0d9521526499c0a8f403c9964ecb0527"
+        },
+        "files": [
+            "config/packages/security.yaml"
+        ]
     },
     "symfony/security-csrf": {
         "version": "v4.1.7"
@@ -268,6 +286,9 @@
     },
     "symfony/var-dumper": {
         "version": "v4.1.7"
+    },
+    "symfony/var-exporter": {
+        "version": "v4.2.7"
     },
     "symfony/web-profiler-bundle": {
         "version": "3.3",

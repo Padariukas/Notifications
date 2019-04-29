@@ -1,0 +1,29 @@
+security:
+  providers:
+    my_ldap:
+      ldap:
+        service: Symfony\Component\Ldap\Ldap
+        base_dn: dc=KP,dc=local
+        search_dn: "cn=testas testas,cn=Users,dc=KP,dc=local"
+        search_password: ZXCvbn123++
+        default_roles: ROLE_USER
+        uid_key: sAMAccountName
+
+  firewalls:
+    main:
+      http_basic_ldap:
+        service: Symfony\Component\Ldap\Ldap
+        dn_string: 'dc=KP,dc=local'
+        query_string: '(&(objectCategory=person)(objectclass=User)(sAMAccountName={username}))'
+
+      logout:
+        path: /logout
+
+  access_control:
+    # require ROLE_ADMIN for /admin*
+    - { path: ^/, roles: ROLE_USER }
+    - { path: ^/, roles:  }
+    #(memberOf=CN=ADMD.admins,OU=Administration Accounts,DC=DAIS,DC=local)
+
+
+

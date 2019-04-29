@@ -8,7 +8,9 @@ use App\Repository\DeletedUserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 class DeletedUserController extends AbstractController
@@ -85,4 +87,12 @@ class DeletedUserController extends AbstractController
 
         return $this->redirectToRoute('deleted_user_index');
     }
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logout()
+    {
+        throw new \RuntimeException('You must activate the logout in your security firewall configuration.');
+    }
+
 }

@@ -3,8 +3,6 @@
 {% block title %}DeletedUser{% endblock %}
 
 {% block body %}
-    <h1>DeletedUser</h1>
-
     <table class="table">
         <tbody>
             <tr>
@@ -42,9 +40,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('deleted_user_index') }}">back to list</a>
-
-    <a href="{{ path('deleted_user_edit', {'id': deleted_user.id}) }}">edit</a>
-
-    {{ include('deleted_user/_delete_form.html.twig') }}
+        <a href="{{ path('deleted_user_index') }}">back to list</a>
+        <a href="{{ path('deleted_user_edit', {'id': deleted_user.id}) }}">edit</a>
+        {{ include('deleted_user/_delete_form.html.twig') }}
 {% endblock %}
