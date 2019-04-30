@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\DeletedUser;
 use App\Form\DeletedUserType;
 use App\Repository\DeletedUserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -13,14 +13,38 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
-class DeletedUserController extends AbstractController
+class DeletedUserController extends Controller
 {
     /**
      * @Route("/", name="deleted_user_index", methods="GET")
      */
-    public function index(DeletedUserRepository $deletedUserRepository): Response
+    public function index(DeletedUserRepository $deletedUserRepository, Request $request): Response
     {
-        return $this->render('deleted_user/index.html.twig', ['deleted_users' => $deletedUserRepository->findAll()]);
+
+        $em    = $this->get('doctrine')->getManager();
+        $filterByName = $request->query->get('name');
+        $filterByDateFrom = $request->query->get('filterFrom');
+        $filterByDateTo = $request->query->get('filterTo');
+        if(isset($filterByDateFrom)) {
+            $filterByDateFrom = $request->query->get('filterFrom');
+        }else {
+            $filterByDateFrom = "";
+        }
+
+
+        $dql   = "SELECT d FROM App:DeletedUser d WHERE (d.UserName LIKE '$filterByName%' AND d.DisableDate > '$filterByDateFrom' ) ";
+        $query = $em->createQuery($dql);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+        );
+
+        // parameters to template
+        return $this->render('deleted_user/index.html.twig', array('pagination' => $pagination));
+
     }
 
     /**
